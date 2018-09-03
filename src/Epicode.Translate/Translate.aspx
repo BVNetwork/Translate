@@ -72,6 +72,19 @@
                 <asp:Label AssociatedControlId="TranslateDescendentsCheckBox" Text="Translate descendents" runat="server" />   
             </div>
         </div>
+        <div class="epi-size10">
+            <div>                                                     
+                <asp:CheckBox ID="CreateProjectCheckBox" runat="server"/>
+                <asp:Label AssociatedControlId="CreateProjectCheckBox" Text="Create project" runat="server" />   
+            </div>
+        </div>
+        <div class="epi-size10">
+            <div>                                     
+                
+                <asp:Label AssociatedControlId="ProjectNameTextBox" Text="Project name" runat="server" />   
+                <asp:TextBox ID="ProjectNameTextBox" CssClass="episize240" runat="server"></asp:TextBox>
+            </div>
+        </div>
     </div>
 
     <div class="epi-buttonContainer">

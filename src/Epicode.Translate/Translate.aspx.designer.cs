@@ -67,6 +67,24 @@ namespace Epicode.Translate {
         protected global::System.Web.UI.WebControls.CheckBox TranslateDescendentsCheckBox;
         
         /// <summary>
+        /// CreateProjectCheckBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox CreateProjectCheckBox;
+        
+        /// <summary>
+        /// ProjectNameTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ProjectNameTextBox;
+        
+        /// <summary>
         /// ResultPlaceHolder control.
         /// </summary>
         /// <remarks>

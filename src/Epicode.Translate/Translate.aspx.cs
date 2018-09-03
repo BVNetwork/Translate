@@ -26,6 +26,9 @@ namespace Epicode.Translate
         internal Injected<IContentLoader> InjectedContentLoader { get; set; }
         private IContentLoader ContentLoader => InjectedContentLoader.Service;
 
+        internal Injected<ProjectRepository> InjectedProjectRepository { get; set; }
+        private ProjectRepository ProjectRepository => InjectedProjectRepository.Service;
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -69,6 +72,13 @@ namespace Epicode.Translate
             var existingCulture = new CultureInfo(SourceLanguageDropDownList.SelectedValue);
             var newCulture = new CultureInfo(TargetLanguageDropDownList.SelectedValue);
 
+            Project project = null;
+            if (CreateProjectCheckBox.Checked)
+            {
+                project = new Project { Name = ProjectNameTextBox.Text };
+                ProjectRepository.Save(project);
+            }
+
             var list = new List<ContentReference> { CurrentContentLink };
 
             if (TranslateDescendentsCheckBox.Checked)
@@ -84,12 +94,12 @@ namespace Epicode.Translate
 
                 try
                 {
-                    message = TranslateContent(descendent, existingCulture, newCulture);
+                    message = TranslateContent(descendent, existingCulture, newCulture, project);
                     
                     var blocks = GetBlocks(descendent, existingCulture, newCulture);
                     foreach (var blockReference in blocks)
                     {
-                        message += "<br />" + TranslateContent(blockReference, existingCulture, newCulture) + " (block)";
+                        message += "<br />" + TranslateContent(blockReference, existingCulture, newCulture, project) + " (block)";
                     }
                 }
                 catch (Exception ex)
@@ -105,7 +115,8 @@ namespace Epicode.Translate
         }
 
 
-        private string TranslateContent(ContentReference contentReference, CultureInfo fromCulture, CultureInfo toCulture)
+        private string TranslateContent(ContentReference contentReference, CultureInfo fromCulture,
+            CultureInfo toCulture, Project project)
         {
             var languageBranchManager = ServiceLocator.Current.GetInstance<ILanguageBranchManager>();
 
@@ -115,11 +126,19 @@ namespace Epicode.Translate
                 fromCulture.TwoLetterISOLanguageName,
                 toCulture.Name,
                 toCulture.TwoLetterISOLanguageName,
-                out _,
+                out contentReference,
                 AutoPublishCheckBox.Checked);
 
             if (ok)
             {
+                if (project != null)
+                {
+                    var content = ContentLoader.Get<IContent>(contentReference);
+                    
+                    ProjectItem projectItem = new ProjectItem(project.ID, content);
+                    ProjectRepository.SaveItems(new ProjectItem[] { projectItem });
+                }
+
                 return $"Content {contentReference.ID} translated from {fromCulture.NativeName} to {toCulture.NativeName}";
             }
 
