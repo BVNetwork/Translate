@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Epicode.Translate</id>
+    <version>0.0.1</version>
+    <title>Translate</title>
+    <authors>Haakon Peder Haugsten</authors>
+    <owners>BV Network AS</owners>
+    <projectUrl>https://github.com/BVNetwork/Translate</projectUrl>
+    <description>Automatic translation of Episerver pages with Azure Translator Text API.</description>
+    <summary>Automatic translation of Episerver pages with Azure Translator Text API.</summary>
+    <tags>EPiServerPublicModulePackage Translation</tags>
+    <references>
+      <reference file="Epicode.Translate.dll" />
+    </references>
+    <dependencies>
+      <dependency id="EPiServer.Labs.LanguageManager" version="[3.1.6, 4.0)"/>
+    </dependencies>
+</metadata>
+  <files>
+    <file src="Translate.aspx" target="content\Modules\_protected\Epicode.Translate\" />
+    <file src="bin\Epicode.Translate.dll" target="lib\net45\Epicode.Translate.dll" />
+  </files>
+</package>
