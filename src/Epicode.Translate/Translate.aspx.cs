@@ -8,9 +8,11 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.Labs.LanguageManager.Business;
 using EPiServer.PlugIn;
+using EPiServer.Security;
 using EPiServer.ServiceLocation;
 using EPiServer.Shell.WebForms;
 using EPiServer.Web.Routing;
+using IContentExtensions = EPiServer.Cms.Shell.IContentExtensions;
 
 namespace Epicode.Translate
 {
@@ -42,9 +44,17 @@ namespace Epicode.Translate
                 foreach (var language in LanguageBranchRepository.ListEnabled())
                 {
                     SourceLanguageDropDownList.Items.Add(CreateLanguageListItem(language));                    
-                    TargetLanguageDropDownList.Items.Add(CreateLanguageListItem(language));
+
+
+                    if(CheckAccessRightOnLanguageBranch(language))
+                        TargetLanguageDropDownList.Items.Add(CreateLanguageListItem(language));
                 }
             }
+        }
+
+        private bool CheckAccessRightOnLanguageBranch(LanguageBranch languageBranch)
+        {
+            return languageBranch.QueryEditAccessRights(PrincipalInfo.CurrentPrincipal);          
         }
 
         private static ListItem CreateLanguageListItem(LanguageBranch language)

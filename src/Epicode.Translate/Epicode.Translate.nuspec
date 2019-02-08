@@ -9,7 +9,7 @@
     <projectUrl>https://github.com/BVNetwork/Translate</projectUrl>
     <description>Automatic translation of Episerver pages with Azure Translator Text API.</description>
     <summary>Automatic translation of Episerver pages with Azure Translator Text API.</summary>
-    <tags>EPiServerPublicModulePackage Translation</tags>
+    <tags>EPiServerModulePackage Translation</tags>
     <references>
       <reference file="Epicode.Translate.dll" />
     </references>

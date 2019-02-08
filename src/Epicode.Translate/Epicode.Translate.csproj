@@ -285,7 +285,9 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Epicode.Translate.nuspec" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\module.config" />
   </ItemGroup>
