@@ -12,7 +12,6 @@ using EPiServer.Security;
 using EPiServer.ServiceLocation;
 using EPiServer.Shell.WebForms;
 using EPiServer.Web.Routing;
-using IContentExtensions = EPiServer.Cms.Shell.IContentExtensions;
 
 namespace Epicode.Translate
 {
@@ -70,8 +69,9 @@ namespace Epicode.Translate
             base.OnPreInit(e);
 
             MasterPageFile = UriSupport.ResolveUrlFromUIBySettings("MasterPages/EPiServerUI.Master");
-            if (EPiServer.Security.PrincipalInfo.CurrentPrincipal.IsInRole("Administrators") == false
-                && EPiServer.Security.PrincipalInfo.CurrentPrincipal.IsInRole("WebAdmins") == false)
+            
+            if (PrincipalInfo.CurrentPrincipal.IsInRole("Administrators") == false
+                && PrincipalInfo.CurrentPrincipal.IsInRole("WebAdmins") == false)
             {
                 throw new AccessDeniedException();
             }
@@ -198,10 +198,8 @@ namespace Epicode.Translate
                 }
                 return _currentLink;
             }
-            set
-            {
-                _currentLink = value;
-            }
+
+            set => _currentLink = value;
         }
     }
 }
