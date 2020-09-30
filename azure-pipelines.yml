@@ -14,6 +14,7 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
+
 steps:
 - task: NuGetToolInstaller@1
 
@@ -23,6 +24,20 @@ steps:
     feedsToUse: 'config'
     nugetConfigPath: 'src/NuGet.Config'
 
+- task: Assembly-Info-NetFramework@2
+  inputs:
+    Path: '$(Build.SourcesDirectory)'
+    FileNames: |
+      **\AssemblyInfo.cs
+    InsertAttributes: false
+    FileEncoding: 'auto'
+    WriteBOM: false
+    VersionNumber: '$(BuildVersion)'
+    FileVersionNumber: '$(BuildVersion)'
+    LogLevel: 'verbose'
+    FailOnWarning: false
+    DisableTelemetry: false
+    
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
