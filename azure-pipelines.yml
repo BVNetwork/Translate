@@ -54,9 +54,13 @@ steps:
 #    nuGetFeedType: 'internal'
 #    publishVstsFeed: 'TestFeed'
 
+
+- task: NuGetAuthenticate@0
+  displayName: 'NuGet Authenticate'
 - task: NuGetCommand@2
+  displayName: 'NuGet push'
   inputs:
-    command: 'push'
+    command: push
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: 'bvnetwork/bvnetwork'
