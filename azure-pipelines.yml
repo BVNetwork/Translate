@@ -56,7 +56,7 @@ steps:
     command: 'pack'
     packagesToPack: '**/*.nuspec'
     versioningScheme: byEnvVar
-    versionEnvVar: PackageVersion
+    versionEnvVar: BuildVersion
     packDestination: '$(Build.ArtifactStagingDirectory)'
 
 
