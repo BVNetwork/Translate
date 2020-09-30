@@ -59,4 +59,4 @@ steps:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'internal'
-    publishVstsFeed: '7140bd8b-8dc8-4652-a844-ddd5b85f3204/f5220c8e-9753-4672-8f5c-a0738810e29b'
+    publishVstsFeed: 'bvnetwork/bvnetwork'
