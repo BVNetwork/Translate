@@ -14,7 +14,7 @@
       <reference file="Epicode.Translate.dll" />
     </references>
     <dependencies>
-      <dependency id="EPiServer.Labs.LanguageManager" version="[3.1.6, 4.0)"/>
+      <dependency id="EPiServer.Labs.LanguageManager" version="[4.0, 5.0)"/>
     </dependencies>
 </metadata>
   <files>
